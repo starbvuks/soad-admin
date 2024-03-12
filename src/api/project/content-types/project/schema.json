@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projectName": {
+      "type": "string"
+    },
+    "numberOfDays": {
+      "type": "integer"
+    },
+    "faculty": {
+      "type": "string"
+    },
+    "students": {
+      "type": "string"
+    },
+    "projDate": {
+      "type": "date"
+    },
+    "brief": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "projMedia": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "academic_year": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::academic-year.academic-year"
+    },
+    "semester": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::semester.semester"
+    },
+    "specialization": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::specialization.specialization"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::course.course"
+    }
+  }
+}

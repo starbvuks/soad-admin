@@ -788,6 +788,217 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAcademicYearAcademicYear extends Schema.CollectionType {
+  collectionName: 'academic_years';
+  info: {
+    singularName: 'academic-year';
+    pluralName: 'academic-years';
+    displayName: 'Academic Year';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ay: Attribute.String;
+    specialization: Attribute.Relation<
+      'api::academic-year.academic-year',
+      'oneToMany',
+      'api::specialization.specialization'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::academic-year.academic-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::academic-year.academic-year',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourseCourse extends Schema.CollectionType {
+  collectionName: 'courses';
+  info: {
+    singularName: 'course';
+    pluralName: 'courses';
+    displayName: 'Course';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    courseName: Attribute.String;
+    courseCode: Attribute.String;
+    courseDetails: Attribute.String;
+    keywords: Attribute.String;
+    specialization: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'api::specialization.specialization'
+    >;
+    semester: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'api::semester.semester'
+    >;
+    academic_years: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::academic-year.academic-year'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    projectName: Attribute.String;
+    numberOfDays: Attribute.Integer;
+    faculty: Attribute.String;
+    students: Attribute.String;
+    projDate: Attribute.Date;
+    brief: Attribute.String;
+    keywords: Attribute.String;
+    projMedia: Attribute.Media;
+    academic_year: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'api::academic-year.academic-year'
+    >;
+    semester: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'api::semester.semester'
+    >;
+    specialization: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'api::specialization.specialization'
+    >;
+    course: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSemesterSemester extends Schema.CollectionType {
+  collectionName: 'semesters';
+  info: {
+    singularName: 'semester';
+    pluralName: 'semesters';
+    displayName: 'Semester';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    semesterNum: Attribute.String;
+    academic_years: Attribute.Relation<
+      'api::semester.semester',
+      'oneToMany',
+      'api::academic-year.academic-year'
+    >;
+    specializations: Attribute.Relation<
+      'api::semester.semester',
+      'oneToMany',
+      'api::specialization.specialization'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::semester.semester',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::semester.semester',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSpecializationSpecialization extends Schema.CollectionType {
+  collectionName: 'specializations';
+  info: {
+    singularName: 'specialization';
+    pluralName: 'specializations';
+    displayName: 'Specialization';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    specializationName: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::specialization.specialization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::specialization.specialization',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +1017,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::academic-year.academic-year': ApiAcademicYearAcademicYear;
+      'api::course.course': ApiCourseCourse;
+      'api::project.project': ApiProjectProject;
+      'api::semester.semester': ApiSemesterSemester;
+      'api::specialization.specialization': ApiSpecializationSpecialization;
     }
   }
 }

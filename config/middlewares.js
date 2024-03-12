@@ -31,7 +31,7 @@ module.exports = [
     config: {
       enabled: true,
       headers: "*",
-      origin: ["http://ec2-54-84-35-62.compute-1.amazonaws.com:1337"],
+      origin: "*",
     },
   },
   "strapi::poweredBy",
