@@ -4,7 +4,8 @@
   "info": {
     "singularName": "semester",
     "pluralName": "semesters",
-    "displayName": "Semester"
+    "displayName": "Semester",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,15 +15,15 @@
     "semesterNum": {
       "type": "string"
     },
-    "academic_years": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::academic-year.academic-year"
-    },
     "specializations": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::specialization.specialization"
+    },
+    "academic_years": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::academic-year.academic-year"
     }
   }
 }

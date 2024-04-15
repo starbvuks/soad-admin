@@ -4,7 +4,8 @@
   "info": {
     "singularName": "project",
     "pluralName": "projects",
-    "displayName": "Project"
+    "displayName": "Project",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -20,7 +21,7 @@
     "faculty": {
       "type": "string"
     },
-    "students": {
+    "studentNames": {
       "type": "string"
     },
     "projDate": {
@@ -33,19 +34,15 @@
       "type": "string"
     },
     "projMedia": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
-    },
-    "academic_year": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::academic-year.academic-year"
+      ]
     },
     "semester": {
       "type": "relation",
@@ -61,6 +58,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::course.course"
+    },
+    "academic_year": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::academic-year.academic-year"
     }
   }
 }

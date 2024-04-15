@@ -794,6 +794,7 @@ export interface ApiAcademicYearAcademicYear extends Schema.CollectionType {
     singularName: 'academic-year';
     pluralName: 'academic-years';
     displayName: 'Academic Year';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -829,6 +830,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     singularName: 'course';
     pluralName: 'courses';
     displayName: 'Course';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -877,6 +879,7 @@ export interface ApiProjectProject extends Schema.CollectionType {
     singularName: 'project';
     pluralName: 'projects';
     displayName: 'Project';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -885,16 +888,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
     projectName: Attribute.String;
     numberOfDays: Attribute.Integer;
     faculty: Attribute.String;
-    students: Attribute.String;
+    studentNames: Attribute.String;
     projDate: Attribute.Date;
     brief: Attribute.String;
     keywords: Attribute.String;
     projMedia: Attribute.Media;
-    academic_year: Attribute.Relation<
-      'api::project.project',
-      'oneToOne',
-      'api::academic-year.academic-year'
-    >;
     semester: Attribute.Relation<
       'api::project.project',
       'oneToOne',
@@ -909,6 +907,11 @@ export interface ApiProjectProject extends Schema.CollectionType {
       'api::project.project',
       'oneToOne',
       'api::course.course'
+    >;
+    academic_year: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'api::academic-year.academic-year'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -934,21 +937,22 @@ export interface ApiSemesterSemester extends Schema.CollectionType {
     singularName: 'semester';
     pluralName: 'semesters';
     displayName: 'Semester';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     semesterNum: Attribute.String;
-    academic_years: Attribute.Relation<
-      'api::semester.semester',
-      'oneToMany',
-      'api::academic-year.academic-year'
-    >;
     specializations: Attribute.Relation<
       'api::semester.semester',
       'oneToMany',
       'api::specialization.specialization'
+    >;
+    academic_years: Attribute.Relation<
+      'api::semester.semester',
+      'oneToMany',
+      'api::academic-year.academic-year'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
