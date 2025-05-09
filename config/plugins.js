@@ -1,5 +1,18 @@
 module.exports = ({ env }) => ({
-    upload: {
+  'import-export-entries': {
+    enabled: true,
+    config: {
+      /**
+       * Public hostname of the server.
+       *
+       * If you use the local provider to persist medias,
+       * `serverPublicHostname` should be set to properly export media urls.
+       */
+      serverPublicHostname: "", // default: "".
+    },
+  },    
+
+upload: {
       config: {
         provider: "aws-s3",
         providerOptions: {

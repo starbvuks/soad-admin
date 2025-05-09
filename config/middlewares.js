@@ -35,10 +35,15 @@ module.exports = [
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],    
     },
   },
+  {
+    name: 'strapi::body',
+    config: {
+      jsonLimit: '10mb',
+    },
+  },
   "strapi::poweredBy",
   "strapi::logger",
   "strapi::query",
-  "strapi::body",
   "strapi::session",
   "strapi::favicon",
   "strapi::public",

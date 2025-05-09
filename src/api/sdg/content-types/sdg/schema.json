@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sdgs",
+  "info": {
+    "singularName": "sdg",
+    "pluralName": "sdgs",
+    "displayName": "SDG"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Goal": {
+      "type": "string"
+    }
+  }
+}
